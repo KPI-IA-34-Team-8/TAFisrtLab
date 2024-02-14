@@ -91,17 +91,17 @@ if __name__ == "__main__":
     print("\n\n\n")
     for i in [10, 100, 1000, 5000, 10000]:
     # for i in [10, 100, 1000, 5000, 10000, 20000, 50000]:
-        print(f"\n\n\nTesting shell sort (Knuth sequence) with {i} elements:")
-        print("\nTest on a sorted algorithm:")
-        print(test_sort(i, shell_sort_knuth, True))
-        print("\nTest on an unsorted algorithm:")
-        print(test_sort(i, shell_sort_knuth, False))
-    print("\n\n\n")
-    for i in [10, 100, 1000, 5000, 10000]:
-    # for i in [10, 100, 1000, 5000, 10000, 20000, 50000]:
         print(f"\n\n\nTesting bubble sort with {i} elements:")
         print("\nTest on a sorted algorithm:")
         print(test_sort(i, bubble_sort, True))
         print("\nTest on an unsorted algorithm:")
         print(test_sort(i, bubble_sort, False))
+    print("\n\n\n")
+    for i in [10, 100, 1000, 5000, 10000]:
+    # for i in [10, 100, 1000, 5000, 10000, 20000, 50000]:
+        print(f"\n\n\nTesting shell sort (Knuth sequence) with {i} elements:")
+        print("\nTest on a sorted algorithm:")
+        print(test_sort(i, shell_sort_knuth, True))
+        print("\nTest on an unsorted algorithm:")
+        print(test_sort(i, shell_sort_knuth, False))
     
