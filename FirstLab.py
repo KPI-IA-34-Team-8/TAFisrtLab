@@ -91,10 +91,6 @@ def test_sort(amount: int, alg: callable, sorting: int = 1) -> str:
     elif sorting == 3:
         for i in range(amount):
             arr.append(random.randint(0,100000000000))
-    print("Unsorted array:")
-    # we do this to make sure we can dump it into a txt file
-    # otherwise it errors
-    print(str(arr).encode('utf-8'))
     # get the time in nanoseconds
     # note: time does not change after a nanosecond, it changes after a millisecond
     # so we can't take the array and sort it one time and do time_start - time_end, because it will = 0
@@ -130,7 +126,10 @@ def test_sort(amount: int, alg: callable, sorting: int = 1) -> str:
     ms = elapsed_time * 1000
     micros = elapsed_time * 1000 * 1000
     rs = f"Amount of replacements that were done: {o}\nAmount of comparisons that were done: {p}\n"
-    rse = f"\nSorted array:\n{str(arr).encode('utf-8')}"
+    rse = ""
+    # we encode in utf 8 to be able to dump it into a file
+    # commented out due to the fact that we actually don't need to manually check the array if it's sorted or not..
+    # rse = f"\nSorted array:\n{str(arr).encode('utf-8')}"
     if hours > 1:
         return f"{rs}Ran the code {ran} times. Time required for one run is: \nApprox. {hours} hours {minutes} minutes {seconds} seconds{rse}"
     elif minutes > 1:
@@ -148,30 +147,16 @@ if __name__ == "__main__":
     # "for i in [10, 100, 1000, 5000, 10000, 20000, 50000]:"
     # due to the fact it takes a lot of time to do 20000, so it will take a lot more time to sort an array with 50000 elements
     amounts = [10, 100, 1000, 5000, 10000]
-    print("Running the tests..")
-    for i in amounts:
-        print(f"\n\n\nTesting modified bubble sort with {i} elements:")
-        print("\nTest on a sorted algorithm:")
-        print(test_sort(i, modified_bubble_sort, 1))
-        print("\nTest on an \"opposite\" sorted algorithm:")
-        print(test_sort(i, modified_bubble_sort, 2))
-        print("\nTest on an unsorted algorithm:")
-        print(test_sort(i, modified_bubble_sort, 3))
-    print("\n\n\n")
-    for i in amounts:
-        print(f"\n\n\nTesting bubble sort with {i} elements:")
-        print("\nTest on a sorted algorithm:")
-        print(test_sort(i, bubble_sort, 1))
-        print("\nTest on an \"opposite\" sorted algorithm:")
-        print(test_sort(i, bubble_sort, 2))
-        print("\nTest on an unsorted algorithm:")
-        print(test_sort(i, bubble_sort, 3))
-    print("\n\n\n")
-    for i in amounts:
-        print(f"\n\n\nTesting shell sort (Knuth sequence) with {i} elements:")
-        print("\nTest on a sorted algorithm:")
-        print(test_sort(i, shell_sort_knuth, 1))
-        print("\nTest on an \"opposite\" sorted algorithm:")
-        print(test_sort(i, shell_sort_knuth, 2))
-        print("\nTest on an unsorted algorithm:")
-        print(test_sort(i, shell_sort_knuth, 3))
+    sorting = [[1, "a sorted array"], [2, "an \"opposite\" sorted array"], [3, "an unsorted array"]]
+    algorithm = [[bubble_sort, "bubble sort"], [modified_bubble_sort, "modified bubble sort"], [shell_sort_knuth, "shell sort (Knuth sequence)"]]
+    for j in sorting:
+        print("\n")
+        print(f"Testing algorithms on {j[1]}:")
+        for i in amounts:
+                print("\n")
+                print(f"{i} elements tests:")
+                for k in algorithm:
+                    print("\n")
+                    print(f"Testing {k[1]} sort with {i} elements:")
+                    print(test_sort(i, k[0], j[0]))
+       
