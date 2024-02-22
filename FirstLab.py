@@ -61,7 +61,7 @@ def shell_sort_knuth(arr):
         p += 1
     return o, p
 
-        
+
 
 def test_sort(amount: int, alg: callable, sorting: int = 1) -> str:
     """Tests the sorting alogrithms in the code.
@@ -138,8 +138,8 @@ def test_sort(amount: int, alg: callable, sorting: int = 1) -> str:
         return f"{rs}Ran the code {ran} times. Time required for one run is: \nApprox. {seconds} seconds {ms} ms{rse}"
     elif ms > 1:
         return f"{rs}Ran the code {ran} times. Time required for one run is: \nApprox. {ms} ms{rse}"
-    return f"{rs}Ran the code {ran} times. Time required for one run is: \nApprox. {micros} μs{rse}"
-        
+    return f"{rs}Ran the code {ran} times. Time required for one run is: \nApprox. {micros} microseconds{rse}"
+
 
 
 if __name__ == "__main__":
@@ -159,4 +159,3 @@ if __name__ == "__main__":
                     print("\n")
                     print(f"Testing {k[1]} sort with {i} elements:")
                     print(test_sort(i, k[0], j[0]))
-       
