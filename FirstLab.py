@@ -51,12 +51,12 @@ def shell_sort_knuth(arr):
 
         
 
-def test_sort(amount: int, alg: function, sorting: int = 1) -> str:
+def test_sort(amount: int, alg: callable[[list], int], sorting: int = 1) -> str:
     """Tests the sorting alogrithms in the code.
 
     Args:
         amount (int): The length of the array that will be created
-        alg (function): The function that will sort the array in ascending order
+        alg (function): The function that will sort the array in ascending order that will return the amount of replacements that were done during the sorting of the algorithm
         sorting (int, optional): The type of sorting. 1 = in (ascending) order, 2 in opposite (descending) order, 3 = in random order. Defaults to 1.
 
     Returns:
@@ -93,16 +93,16 @@ def test_sort(amount: int, alg: function, sorting: int = 1) -> str:
     o = 0
     # we do sorting a ton of times, but if it takes more than a second then we stop
     for i in range(1000000):
-        # get the amount of replacements we have done in the array that was sorted
         # we copy the array so that the original array does not get sorted
         # (if we don't sort, it'll get sorted the first time and the sorting algorithms may quit early)
-        o += alg(arr.copy())
+        alg(arr.copy())
         # increase the amount of times we ran
         ran += 1
         # if we have done sorting for more than one second
         if time.time_ns() - start_time > 10**9:
             # we sort the original array 
-            o += alg(arr)
+            # get the amount of replacements we have done in the array that was sorted
+            o = alg(arr)
             ran += 1
             break
     # https://gist.github.com/dakaugu/d01213ae54f304900f5e918dd07953ad
